@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hunch — Pricing</title>
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #fafafa; color: #1a1a2e; padding: 40px 20px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 48px; font-weight: 800; margin-bottom: 8px; }
+    .subtitle { font-size: 18px; color: #5b6273; margin-bottom: 48px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 48px; }
+    .plan-card { background: #fff; border-radius: 16px; padding: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; transition: transform 0.2s; }
+    .plan-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .plan-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .plan-price { font-size: 48px; font-weight: 800; color: #7048E8; margin-bottom: 4px; }
+    .plan-period { font-size: 14px; color: #9ca3af; margin-bottom: 24px; }
+    .plan-features { list-style: none; margin-bottom: 32px; text-align: left; }
+    .plan-features li { padding: 8px 0; border-bottom: 1px solid #f0f0f0; color: #5b6273; }
+    .plan-features li::before { content: "✓ "; color: #51cf66; font-weight: 700; }
+    button { width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; background: #7048E8; color: #fff; transition: background 0.2s; }
+    button:hover { background: #5f3cd7; }
+    button:disabled { background: #d0d0d0; cursor: not-allowed; }
+    .byok-note { background: #f0fdf4; border: 2px solid #51cf66; padding: 16px; border-radius: 12px; margin-top: 24px; color: #2b8a3e; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Choose Your Plan</h1>
+    <p class="subtitle">Start debating with AI — find the truth through multi-model debates</p>
+
+    <div class="pricing-grid">
+      <!-- Free Plan -->
+      <div class="plan-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0</div>
+        <div class="plan-period">forever</div>
+        <ul class="plan-features">
+          <li>5 debates (by IP)</li>
+          <li>Bring your own API keys</li>
+          <li>Basic debate visualization</li>
+          <li>Community support</li>
+        </ul>
+        <button disabled>Current Plan</button>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="plan-card">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$19</div>
+        <div class="plan-period">/ month</div>
+        <ul class="plan-features">
+          <li>Unlimited debates</li>
+          <li>All AI models (GPT-4o, Claude, Gemini...)</li>
+          <li>Advanced debate visualization</li>
+          <li>Share & export results</li>
+          <li>Priority support</li>
+        </ul>
+        <button onclick="checkout('pro_monthly')">Get Pro</button>
+      </div>
+
+      <!-- BYOK Lifetime -->
+      <div class="plan-card">
+        <div class="plan-name">BYOK Lifetime</div>
+        <div class="plan-price">$999</div>
+        <div class="plan-period">one-time</div>
+        <ul class="plan-features">
+          <li>Unlimited debates</li>
+          <li>Bring your own API keys</li>
+          <li>All Pro features</li>
+          <li>Lifetime access (no subscription)</li>
+          <li>Premium support</li>
+        </ul>
+        <button onclick="checkout('byok_lifetime')">Buy Lifetime</button>
+        <div class="byok-note">💡 Best value! Pay once, use forever. No monthly fees.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 初始化 Stripe (替换成你的 PUBLISHABLE KEY)
+    const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY');
+
+    async function checkout(plan) {
+      // 调用后端创建 Checkout Session
+      const response = await fetch('http://localhost:3101/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plan, email: '' })
+      });
+
+      const data = await response.json();
+      
+      if (data.ok) {
+        // 跳转到 Stripe Checkout
+        const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
+        if (result.error) {
+          alert('Payment error: ' + result.error.message);
+        }
+      } else {
+        alert('Error: ' + (data.error || 'Unknown error'));
+      }
+    }
+  </script>
+</body>
+</html>

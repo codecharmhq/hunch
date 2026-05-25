@@ -1,0 +1,24 @@
+{
+  "name": "hunch",
+  "version": "0.2.0",
+  "description": "AI Research Crew — 5 agents debate, you get the truth.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.6.0",
+    "anthropic": "^0.0.0",
+    "bcryptjs": "^3.0.3",
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "openai": "^6.39.0",
+    "playwright": "^1.60.0",
+    "sql.js": "^1.14.1",
+    "stripe": "^22.1.1",
+    "uuid": "^14.0.0"
+  }
+}
