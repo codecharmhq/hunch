@@ -500,7 +500,7 @@ function servePayPalPage(res, type, orderId) {
 }
 
 
-server.listen(PORT, '::', () => {
+server.listen(PORT, () => {
   console.log(`
   Hunch — Multi-Model AI Debate Engine
   -------------------------------------
