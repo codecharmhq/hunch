@@ -17,7 +17,7 @@ const { verifyLicense } = require('./lib/gumroad');
 loadEnv();
 
 const PORT = parseInt(process.env.PORT || process.env.HUNCH_PORT || '8100', 10);
-const HOST = process.env.HOST || process.env.IP || '::';
+const HOST = '::';
 const FALLBACK_PROVIDER = process.env.HUNCH_PROVIDER || 'volcengine';
 const FALLBACK_MODEL = process.env.HUNCH_MODEL || '';
 const DEMO_LIMIT = 5;
