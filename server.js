@@ -111,7 +111,7 @@ const server = http.createServer(async (req, res) => {
     return serveFile(res, fp, types[ext] || 'application/octet-stream');
   }
   // Serve root-level static files (e.g. /styles-modern.css, /avatars.js)
-  if (req.method === 'GET' && /^\/[\w\-]+\.(css|js|png|svg|ico|map)$/.test(url.pathname)) {
+  if (req.method === 'GET' && /^\/[\w\-]+\.(css|js|png|svg|ico|map|html)$/.test(url.pathname)) {
     const fp = path.join(__dirname, 'public', url.pathname);
     const types = { '.css': 'text/css', '.js': 'application/javascript', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.map': 'application/json' };
     const ext = path.extname(fp);
