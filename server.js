@@ -94,6 +94,9 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'GET' && url.pathname === '/history') {
     return serveFile(res, path.join(__dirname, 'public', 'index.html'), 'text/html');
   }
+  if (req.method === 'GET' && url.pathname === '/blog') {
+    return serveFile(res, path.join(__dirname, 'public', 'blog.html'), 'text/html');
+  }
   if (req.method === 'GET' && url.pathname.startsWith('/share/')) {
     return serveSharePage(res, url.pathname.slice(7));
   }
