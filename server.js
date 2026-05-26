@@ -16,7 +16,7 @@ const { verifyLicense } = require('./lib/gumroad');
 
 loadEnv();
 
-const PORT = parseInt(process.env.HUNCH_PORT || '3100', 10);
+const PORT = parseInt(process.env.PORT || process.env.HUNCH_PORT || '8100', 10);
 const FALLBACK_PROVIDER = process.env.HUNCH_PROVIDER || 'volcengine';
 const FALLBACK_MODEL = process.env.HUNCH_MODEL || '';
 const DEMO_LIMIT = 5;
@@ -500,7 +500,7 @@ function servePayPalPage(res, type, orderId) {
 }
 
 
-server.listen(PORT, () => {
+server.listen(PORT, '::', () => {
   console.log(`
   Hunch — Multi-Model AI Debate Engine
   -------------------------------------
