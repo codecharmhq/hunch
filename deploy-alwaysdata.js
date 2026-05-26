@@ -21,10 +21,16 @@ conn.on('ready', () => {
     mv /tmp/hunch-code/.git /home/hunch/ 2>/dev/null
     rm -rf /tmp/hunch-code
     echo "---GIT DONE---"
-    cd /home/hunch && npm install --omit=dev 2>&1
+    cd /home/hunch && npm install --omit=dev --ignore-scripts 2>&1
     echo "---NPM DONE---"
     ls -la /home/hunch/
     echo "---DEPLOY COMPLETE---"
+    echo "=== Restarting server ==="
+    pkill -f "node server" 2>/dev/null
+    sleep 2
+    cd /home/hunch && nohup node server.js > server.log 2>&1 &
+    sleep 3
+    curl -s -o /dev/null -w "Main:%{http_code} Blog:%{http_code}\\n" http://localhost:8200/ http://localhost:8200/blog
   `;
 
   conn.exec(cloneCmd, (err, stream) => {
