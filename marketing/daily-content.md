@@ -117,3 +117,33 @@ $49 lifetime. No subscription. Use it forever.
 https://7581480847137.gumroad.com/l/xdfzmhj
 
 What's a decision you're stuck on right now?
+
+---
+
+## 2026-05-27 — Format 1: Reddit Post (r/SideProject)
+
+**Title:** I got tired of ChatGPT agreeing with everything I said, so I built a panel of 5 AIs that argue with each other instead
+
+Quick backstory: Last year I almost pulled the trigger on quitting my job to go full-time on a side project. I'd been "validating" the idea with ChatGPT for weeks. Every conversation ended with some version of "that's a great plan, you've thought this through well."
+
+Then I showed the exact same pitch to a friend who's a VC. He tore it apart in 15 minutes. Found three holes I'd completely missed.
+
+That's when it clicked: a single AI talking to you is basically a yes-man. It mirrors your framing. It optimizes for not upsetting you. That's the opposite of what you need when making a hard decision.
+
+So I built **Hunch** → https://hunch.alwaysdata.net
+
+You type in a decision you're stuck on. Five AI advisors with different personalities debate it in front of you:
+
+- **The Skeptic** — looks for everything that could go wrong
+- **The Optimist** — finds the upside you're underweighting
+- **The Analyst** — wants data, numbers, frameworks
+- **The Pragmatist** — focuses on what's actually doable next week
+- **The Visionary** — zooms out to the 10-year view
+
+They actually disagree with each other. The Skeptic will call out the Optimist for hand-waving. The Analyst will demand the Visionary show their work. You watch the debate unfold and end up with a much clearer view than any single take could give you.
+
+I've used it for: a job offer negotiation, whether to shut down a project, picking between two apartments, even whether to have a hard conversation with a co-founder.
+
+It's $49 lifetime on Gumroad. No subscription, no upsell. One payment, unlimited decisions.
+
+Would genuinely love feedback from this sub — especially on the advisor personalities. Curious if anyone here would want a 6th one (someone suggested a "Contrarian" that argues the opposite of whatever you seem to want).
